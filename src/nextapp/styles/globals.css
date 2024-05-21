@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  @apply bg-stone-100; /* This is a light gray color from Tailwind CSS /
+  }
+
+.large-image {
+    transition: opacity 0.5s ease-out;
+    width: 100%; / Adjust size as needed /
+    max-width: 1200px; / Adjust size as needed */
+}
+
+.visible {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 3s ease-out forwards;
+}
+#__next {
+  background-color: transparent; /* Makes the background color transparent */
+  padding: -5; /* Removes all padding */
+}
+
+.starsContainer {
+  display: flex;
+}
+
+.star {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.star:hover {
+  transform: scale(1.5);
+}
+@keyframes fadeLogo {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+.logo-loading {
+  animation: fadeLogo 2s ease-in-out infinite alternate;
+}
+.faq-question {
+  font-size: 1.2rem; /* larger size for questions */
+  font-weight: bold;  /* bold text for questions */
+}
+
+.faq-answer {
+  font-size: 1rem; /* standard size for answers */
+  font-weight: normal; /* normal weight for answers */
+}

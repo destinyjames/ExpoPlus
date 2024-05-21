@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Seat Highlighter</title>
+    <style>
+        #svgframe {
+            width: 100%; /* Take the full width of the container */
+            height: 500px; /* Set a fixed height, or use vh for viewport height */
+            border: none; /* Remove the border */
+        }
+    </style>
+</head>
+<body>
+    <!-- Your button to trigger the highlighting -->
+    <button onclick="highlightProjects()">Highlight Projects</button>
+
+    <!-- The iframe embedding your SVG -->
+    <iframe id="svgframe" src="{{ url_for('static', filename='lg27.svg') }}" onload="iframeLoaded()"></iframe>
+
+    <script>
+        // Pass the project_ids from Flask into a JavaScript variable
+        var projectIds = {{ project_ids|tojson|safe }};
+
+        function iframeLoaded() {
+            var iframe = document.getElementById('svgframe');
+            var svgDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+            // Call this function to highlight all matching paths
+            highlightProjects(svgDoc);
+        }
+
+        function highlightProjects(svgDoc) {
+            projectIds.forEach(function(projectId) {
+                var paddedProjectId = projectId.toString().padStart(2, '0');
+                var pathId = 'path' + paddedProjectId;
+                var path = svgDoc.getElementById(pathId);
+                if (path) {
+                    path.style.fill = 'purple';
+                } else {
+                    console.error('Path not found:', pathId);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
